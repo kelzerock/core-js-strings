@@ -305,8 +305,13 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const vowels = 'aeiouyAEIOUY';
+  let counter = 0;
+  for (let i = 0; i < str.length; i += 1) {
+    if (vowels.includes(str.charAt(i))) counter += 1;
+  }
+  return counter;
 }
 
 /**
@@ -338,8 +343,17 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  if (!sentence) return '';
+  const maxWord = { length: false, index: false };
+  const arrWords = sentence.split(' ');
+  arrWords.forEach((el, ind) => {
+    if (el.length > maxWord.length) {
+      maxWord.length = el.length;
+      maxWord.index = ind;
+    }
+  });
+  return arrWords[maxWord.index];
 }
 
 /**
@@ -352,8 +366,11 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  return str
+    .split(' ')
+    .map((el) => el.split('').reverse().join(''))
+    .join(' ');
 }
 
 /**
@@ -367,13 +384,19 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  return str
+    .split('')
+    .map((el) => {
+      return el === el.toUpperCase() ? el.toLowerCase() : el.toUpperCase();
+    })
+    .join('');
 }
 
 /**
  * Returns the result of string template and given parameters firstName and lastName.
- * Please do not use concatenation, use template string :
+ * Please do not use conc
+ * atenation, use template string :
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings
  *
  * @param {string} firstName - The first name to include in the template.
